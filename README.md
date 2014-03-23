@@ -1,71 +1,47 @@
 Code Style & Best Practise for Objective-C
 ===========================================
 
-— Code Style
-
-
-Language
-
-==========
-
+##Language
 * Il faut toujours utiliser l’anglais par défaut.
 
-Good:
-
+**Preferred:**
 ```objc
-
 UIColor *myColor = [UIColor whiteColor];
 ```
 
-Bad:
-
+**Not Preferred:**
 ```objc
-
 UIColor *monColour = [UIColor whiteColor];
 ```
 
-
-
-Code Naming
-===========
+##Code Naming
 
 [Apple Official Naming Guide](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/CodingGuidelines/CodingGuidelines.html#//apple_ref/doc/uid/10000146-SW1)
 
-Good
-----
-* Clear, expressive, non-ambiguous names.
-  Since you do far more reading of code than writing, invest the time to type an extra eight characters (and then leverage autocomplete).
+**Preferred:**
+Clear, expressive, non-ambiguous names. Since you do far more reading of code than writing, invest the time to type an extra eight characters (and then leverage autocomplete).
 
-Bad
----
+**Not Preferred:**
 * Hungarian notation
   e.g. data type as part of name `strUserName`  
   Exception: `const` or `enum` values should follow Apple's class-name-then-least-to-most specific pattern. e.g. `UIDeviceOrientationLandscapeRight` or `VPNavigationBarHeight_iPad`).
 
 * Abbreviating. Lazy naming.
-
   e.g `index` What index?
   For an array of house objects use `houseIndex`
 
+##Method Signatures
 
-
-
-Method Signatures
-=================
-
-Good:
-
+**Preferred:**
 ```objc
-
 - (void)setExampleText:(NSString *)text image:(UIImage *)image;
 - (void)sendAction:(SEL)aSelector to:(id)anObject forAllCells:(BOOL)flag;
 - (id)viewWithTag:(NSInteger)tag;
 - (instancetype)initWithWidth:(CGFloat)width height:(CGFloat)height;
 ```
 
-Bad:
+**Not Preferred:**
 ```objc
-
 -(void)setT:(NSString *)text i:(UIImage *)image;
 - (void)sendAction:(SEL)aSelector :(id)anObject :(BOOL)flag;
 - (id)taggedView:(NSInteger)tag;
@@ -73,58 +49,43 @@ Bad:
 - (instancetype)initWith:(int)width and:(int)height;
 ```
 
-Use lower camel case
---------------------
-
-Good:
-
+**Preferred:**
 ```objc
 answerViewController
 ```
 
-Bad:
-
+**Not Preferred:**
 ```objc
 answer_view_controller
 ```
 
-Start with action
------------------
-For methods that represent an action an object takes, start the name with the action.
+* For methods that represent an action an object takes, start the name with the action.
 
-Good:
-
+**Preferred:**
 ```objc
 - (IBAction)showDetailViewController:(id)sender
 ```
 
-Bad:
-
+**Not Preferred:**
 ```objc
 - (void)detailButtonTapped:(id)sender
 ```
 
-Getters
--------
 If the method returns an attribute of the receiver, name the method after the attribute.  The use of "get" is unnecessary, unless one or more values are returned indirection.
 
-Good:
-
+**Preferred:**
 ```objc
 - (NSInteger)age
 ```
 
-Bad:
-
+**Not Preferred:**
 ```objc
 - (NSInteger)calcAge
 - (NSInteger)getAge
 ```
 
 
-Variables
-
-==========
+##Variables
 
 * Use @property without @synthesized is always preferred in most cases in stead of using directly instance variable. 
 
@@ -134,59 +95,33 @@ Direct instance variable access should be avoided except one exception to this: 
 
 * Use always NSInteger/NSUInteger instead of int. Use CGFloat instead float.
 
-For boolean variable:
+##Expressions
 
-```objc
-
-@property (assign, getter=isEditable) BOOL editable;
-```
-
-
-Expressions
-
-==========
 * Dot-notation should always be used for accessing and mutating properties. Bracket notation is preferred in all other instances.
 
-Good:
-
+**Preferred:**
 ```objc
-
-
 NSInteger arrayCount = [self.array count];
 view.backgroundColor = [UIColor orangeColor];
 [UIApplication sharedApplication].delegate;
 ```
 
-Bad:
-
+**Not Preferred:**
 ```objc
-
-
 NSInteger arrayCount = self.array.count;
 [view setBackgroundColor:[UIColor orangeColor]];
 UIApplication.sharedApplication.delegate;
 ```
 
-Spacing
-
-==========
+##Spacing
 * Indent using 4 spaces. Never indent with tabs. Be sure to set this preference in IDE ( Xcode/Appcode ).
 
-
-
-
-
-Conditionals
-
-==========
-
+##Conditionals
 * Method braces and other braces (if/else/switch/while etc.) always open on the same line as the statement but close on a new line.
 * should always use braces
 
-Good:
-
+**Preferred:**
 ```objc
-
 if (condition) {
     // do stuff
 } else {
@@ -194,38 +129,26 @@ if (condition) {
 }
 ```
 
-
-
 Ternary Operator
 
-==========
-Good:
-
+**Preferred:**
 ```objc
-
 NSInteger value = 5;
 result = (value != 0) ? x : y;
 
 BOOL isHorizontal = YES;
 result = isHorizontal ? x : y;
 ```
-Bad:
-
+**Not Preferred:**
 ```objc
-
 result = a ]]> b ? x = c ]]> d ? c : d : y;
 ```
 
-
-- Private Properties/Methods
-
-
+##Private Properties/Methods
 * Private properties should be declared in class extensions (anonymous categories) in the implementation file of a class. Named categories (such as RWTPrivate or private) should never be used unless extending another class. The Anonymous category can be shared/exposed for testing using the +Private.h file naming convention.
 
-Good:
-
+**Preferred:**
 ```objc
-
 @interface RWTDetailViewController ()
 
 @property (strong, nonatomic) GADBannerView *googleAdView;
@@ -235,13 +158,10 @@ Good:
 @end
 ```
 
-
-
-Organization
-============
-
+##Organization
 * use `#pragma mark -`s to categorize methods in functional groupings and protocol/delegate implementations following this general structure.
 
+**Preferred:**
 ```objc
 #pragma mark - Lifecycle
 + (instancetype)objectWithThing:(id)thing {}
@@ -281,15 +201,11 @@ Organization
 - (NSString *)description {}
 ```
 
+##Singletons
 
-
-
-Singletons
-
-============
+**Preferred:**
 
 ```objc
-
 + (instancetype)sharedInstance {  static id sharedInstance = nil;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
@@ -298,26 +214,6 @@ Singletons
   return sharedInstance;
 }
 ```
-
-
-
-Start with action
-
-============
-
-
-* For methods that represent an action an object takes, start the name with the action.
-
-Good:
-
-```objc
-
-- (IBAction)showDetailViewController:(id)sender
-```
-
-
-— Best Practise
-
 
 ## CGRect Functions
 
