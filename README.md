@@ -250,15 +250,14 @@ Constants are preferred over in-line string literals or numbers, as they allow f
 
 **Preferred:**
 ```objc
-static NSString * const RWTAboutViewControllerCompanyName = @"RayWenderlich.com";
+static NSString * const VSCAboutViewControllerCompanyName = @"voyages-sncf.com";
 
-static CGFloat const RWTImageThumbnailHeight = 50.0;
+static CGFloat const VSCImageThumbnailHeight = 50.0;
 ```
 
 **Not Preferred:**
-
 ```objc
-#define CompanyName @"RayWenderlich.com"
+#define CompanyName @"voyages-sncf.com"
 
 #define thumbnailHeight 2
 ```
@@ -268,7 +267,6 @@ static CGFloat const RWTImageThumbnailHeight = 50.0;
 `NSString`, `NSDictionary`, `NSArray`, and `NSNumber` literals should be used whenever creating immutable instances of those objects. Pay special care that `nil` values can not be passed into `NSArray` and `NSDictionary` literals, as this will cause a crash.
 
 **Preferred:**
-
 ```objc
 NSArray *names = @[@"Brian", @"Matt", @"Chris", @"Alex", @"Steve", @"Paul"];
 NSDictionary *productManagers = @{@"iPhone": @"Kate", @"iPad": @"Kamal", @"Mobile Web": @"Bill"};
@@ -277,7 +275,6 @@ NSNumber *buildingStreetNumber = @10018;
 ```
 
 **Not Preferred:**
-
 ```objc
 NSArray *names = [NSArray arrayWithObjects:@"Brian", @"Matt", @"Chris", @"Alex", @"Steve", @"Paul", nil];
 NSDictionary *productManagers = [NSDictionary dictionaryWithObjectsAndKeys: @"Kate", @"iPhone", @"Kamal", @"iPad", @"Bill", @"Mobile Web", nil];
@@ -290,7 +287,7 @@ NSNumber *buildingStreetNumber = [NSNumber numberWithInteger:10018];
 
 Init methods should follow the convention provided by Apple's generated code template.  A return type of 'instancetype' should also be used instead of 'id'.
 
-[More information from Apple doc: Adopting Modern Objective-c](https://developer.apple.com/library/ios/releasenotes/ObjectiveC/ModernizationObjC/AdoptingModernObjective-C/AdoptingModernObjective-C.html)
+[More information from Apple doc: Adopting Modern Objective-C](https://developer.apple.com/library/ios/releasenotes/ObjectiveC/ModernizationObjC/AdoptingModernObjective-C/AdoptingModernObjective-C.html)
 
 ```objc
 - (instancetype)init {
