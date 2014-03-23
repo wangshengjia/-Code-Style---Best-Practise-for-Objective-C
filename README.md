@@ -129,8 +129,7 @@ if (condition) {
 }
 ```
 
-Ternary Operator
-
+##Ternary Operator
 **Preferred:**
 ```objc
 NSInteger value = 5;
@@ -245,14 +244,11 @@ CGFloat height = frame.size.height;
 CGRect frame = (CGRect){ .origin = CGPointZero, .size = frame.size };
 ```
 
-
-
 ## Constants
 
 Constants are preferred over in-line string literals or numbers, as they allow for easy reproduction of commonly used variables and can be quickly changed without the need for find and replace. Constants should be declared as `static` constants and not `#define`s unless explicitly being used as a macro.
 
 **Preferred:**
-
 ```objc
 static NSString * const RWTAboutViewControllerCompanyName = @"RayWenderlich.com";
 
@@ -266,9 +262,6 @@ static CGFloat const RWTImageThumbnailHeight = 50.0;
 
 #define thumbnailHeight 2
 ```
-
-
-
 
 ## Literals
 
@@ -297,6 +290,8 @@ NSNumber *buildingStreetNumber = [NSNumber numberWithInteger:10018];
 
 Init methods should follow the convention provided by Apple's generated code template.  A return type of 'instancetype' should also be used instead of 'id'.
 
+[More information from Apple doc: Adopting Modern Objective-c](https://developer.apple.com/library/ios/releasenotes/ObjectiveC/ModernizationObjC/AdoptingModernObjective-C/AdoptingModernObjective-C.html)
+
 ```objc
 - (instancetype)init {
   self = [super init];
@@ -309,14 +304,10 @@ Init methods should follow the convention provided by Apple's generated code tem
 
 
 ## Dealloc
-
-
 Dealloc methods are no longer required when using arc but in certain cases must be used to remove observers, KVO, etc.
 
 **Preferred:**
-
 ```objc
-
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -330,7 +321,7 @@ Objective-C uses `YES` and `NO`.  Therefore `true` and `false` should only be us
 
 This allows for more consistency across files and greater visual clarity.
 
-[More information](http://nshipster.com/bool/)
+[More information about boolean](http://nshipster.com/bool/)
 
 **Preferred:**
 
@@ -359,7 +350,7 @@ If the name of a `BOOL` property is expressed as an adjective, the property can 
 ## Enumerated Types
 
 When using `enum`s, it is recommended to use the new fixed underlying type specification because it has stronger type checking and code completion. The SDK now includes a macro to facilitate and encourage use of fixed underlying types: `NS_ENUM()`
-
+[More information from Apple doc: Adopting Modern Objective-c](https://developer.apple.com/library/ios/releasenotes/ObjectiveC/ModernizationObjC/AdoptingModernObjective-C/AdoptingModernObjective-C.html)
 **For Example:**
 
 ```objc
@@ -380,8 +371,6 @@ typedef NS_ENUM(NSInteger, RWTGlobalConstants) {
   RWTPinCountMax = 500,
 };
 ```
-
-
 Older k-style constant definitions should be **avoided** unless writing CoreFoundation C code (unlikely).
 
 **Not Preferred:**
@@ -392,8 +381,6 @@ enum GlobalConstants {
   kMaxPinCount = 500,
 };
 ```
-
-
 
 ## Golden Path
 
@@ -441,7 +428,7 @@ if (error) {
 ```
 
 
-**Basic Code Principles**
+##Basic Code Principles
 
 * Each function/method should aim to perform one action/task that reflects it's name.
 * Since each function/method performs one action/task each one should be relatively short. If the code does not fit on one screen for example, you know you have a problem!
