@@ -425,8 +425,9 @@ if (error) {
 ```
 
 ##Size of Method and Class
-A method should be less than 50 lines.
-A class should be less than 500 lines.
+* A method should be less than 50 lines.
+* A class should be less than 500 lines.
+
 **Preferred:**
 ```objc
 - (BOOL)saveToImage:(UIImage *)image withFileName:(NSString *)fileName {
@@ -439,26 +440,25 @@ A class should be less than 500 lines.
     // Write Image to Disk
     return [UIImageJPEGRepresentation(image, 8.0) writeToFile:filePath atomically:YES];
 }
+
 - (NSString *)applicationDocumentsDirectory {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     return paths.count ? [paths objectAtIndex:0] : nil;
 }
+
 - (NSString *)applicationArchivesDirectory {
     NSString *documentsDirectory = [self applicationDocumentsDirectory];
     NSString *archivesDirectory = [documentsDirectory stringByAppendingPathComponent:@"Archives"];
  
     NSFileManager *fm = [NSFileManager defaultManager];
- 
     if (![fm fileExistsAtPath:archivesDirectory]) {
         NSError *error = nil;
         [fm createDirectoryAtPath:archivesDirectory withIntermediateDirectories:YES attributes:nil error:&error];
- 
         if (error) {
             NSLog(@"Unable to create directory due to error %@ with user info %@.", error, error.userInfo);
             return nil;
         }
     }
- 
     return archivesDirectory;
 }
 ```
