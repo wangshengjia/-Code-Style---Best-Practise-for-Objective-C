@@ -1,8 +1,34 @@
 Code Style & Best Practise for Objective-C
 ===========================================
 
+* Language
+* Code Naming
+* Method Signatures
+* Variables
+* Expressions
+* Spacing
+* Conditionals
+* Ternary Operator
+* Private Properties/Methods
+* Organization
+* Singletons
+* CGRect Functions
+* Constants
+* Literals
+* Init Methods
+* Dealloc
+* Booleans
+* Enumerated Types
+* Error handling
+* Golden Path
+* Size of Method and Class
+* Basic Code Principles
+
+
+
+
 ##Language
-* Il faut toujours utiliser l’anglais par défaut.
+* US-English is the language par default.
 
 **Preferred:**
 ```objc
