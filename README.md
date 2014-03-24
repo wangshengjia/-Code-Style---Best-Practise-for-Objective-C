@@ -21,7 +21,7 @@ Code Style & Best Practise for Objective-C
 * Enumerated Types
 * Error handling
 * Golden Path
-* Size of Method and Class
+* Refactor and comment on your method and class
 * Basic Code Principles
 
 
