@@ -450,12 +450,23 @@ if (error) {
 }
 ```
 
-##Size of Method and Class
+## Refactor and comment on your method and class
 * A method should be less than 50 lines.
 * A class should be less than 500 lines.
+* Add comment for the important method. [Xcode plugin - VVDocumenter](https://github.com/onevcat/VVDocumenter-Xcode)
 
 **Preferred:**
 ```objc
+/**
+ *  <#Description#>
+ *
+ *  @param image    <#image description#>
+ *  @param fileName <#fileName description#>
+ *
+ *  @return <#return value description#>
+ *
+ *  @since <#version number#>
+ */
 - (BOOL)saveToImage:(UIImage *)image withFileName:(NSString *)fileName {
     NSString *archivesDirectory = [self applicationArchivesDirectory];
     if (!archivesDirectory) return NO;
